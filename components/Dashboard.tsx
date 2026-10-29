@@ -1,12 +1,23 @@
 import type { PhysicsState } from '../utils/sailingMath';
+import { AERO_STATE_LABEL, CJK_FONT } from '../utils/uiText';
 
 const stateColor = (state: PhysicsState['aeroState']) =>
   state === 'OPTIMAL' ? '#4ade80' : state === 'NOGO' ? '#f87171' : '#fbbf24';
 
-const Item = ({ label, value, color }: { label: string; value: string; color?: string }) => (
+const Item = ({
+  label,
+  value,
+  color,
+  mono = true,
+}: {
+  label: string;
+  value: string;
+  color?: string;
+  mono?: boolean;
+}) => (
   <div>
-    <div style={{ fontSize: 12, color: '#94a3b8' }}>{label}</div>
-    <div style={{ fontSize: 18, fontWeight: 'bold', color }}>{value}</div>
+    <div style={{ fontSize: 12, color: '#94a3b8', fontFamily: CJK_FONT, whiteSpace: 'nowrap' }}>{label}</div>
+    <div style={{ fontSize: 18, fontWeight: 'bold', color, fontFamily: mono ? 'monospace' : CJK_FONT, whiteSpace: 'nowrap' }}>{value}</div>
   </div>
 );
 
@@ -29,11 +40,11 @@ export const Dashboard = ({ data }: { data: PhysicsState }) => (
       backdropFilter: 'blur(4px)',
     }}
   >
-    <Item label="TWA" value={`${data.twa.toFixed(1)}°`} />
-    <Item label="AWA" value={`${data.awa.toFixed(1)}°`} color="#38bdf8" />
-    <Item label="AWS" value={`${data.aws.toFixed(1)} kt`} />
-    <Item label="Speed" value={`${data.bs.toFixed(1)} kt`} color="#4ade80" />
-    <Item label="Heel" value={`${data.heel.toFixed(1)}°`} />
-    <Item label="State" value={data.aeroState} color={stateColor(data.aeroState)} />
+    <Item label="真風角 TWA" value={`${data.twa.toFixed(1)}°`} />
+    <Item label="視風角 AWA" value={`${data.awa.toFixed(1)}°`} color="#38bdf8" />
+    <Item label="視風速 AWS" value={`${data.aws.toFixed(1)} kt`} />
+    <Item label="船速 BS" value={`${data.bs.toFixed(1)} kt`} color="#4ade80" />
+    <Item label="傾角 Heel" value={`${data.heel.toFixed(1)}°`} />
+    <Item label="帆況 State" value={AERO_STATE_LABEL[data.aeroState]} color={stateColor(data.aeroState)} mono={false} />
   </div>
 );

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { computeApparentWind, evaluateSailingState } from '../utils/sailingMath';
+import { CJK_FONT } from '../utils/uiText';
 
 // 瀏覽器內的快速自我檢測（完整測試請跑 npm test）
 const runSelfTests = () => {
@@ -48,7 +49,7 @@ export const SelfTestPanel = () => {
           borderBottom: isOpen ? '1px solid #334155' : 'none',
         }}
       >
-        {isOpen ? '▼' : '▶'} Self Tests{' '}
+        {isOpen ? '▼' : '▶'} <span style={{ fontFamily: CJK_FONT }}>自我檢測</span>{' '}
         <span style={{ color: allPassed ? '#4ade80' : '#f87171' }}>{allPassed ? '✔' : '✘'}</span>
       </button>
       {isOpen && (

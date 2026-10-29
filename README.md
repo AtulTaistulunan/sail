@@ -23,6 +23,7 @@ npm run build      # 正式建置到 dist/
 | `components/Dashboard.tsx` | 底部數值面板 |
 | `components/ControlPanel.tsx` | 左側滑桿 |
 | `components/SelfTestPanel.tsx` | 瀏覽器內快速自我檢測 |
+| `utils/uiText.ts` | 介面中文字串與中文字型堆疊 |
 
 ## 物理慣例
 

@@ -1,4 +1,5 @@
 import type { SailingControls } from '../utils/sailingMath';
+import { CJK_FONT } from '../utils/uiText';
 
 interface SliderProps {
   id: string;
@@ -15,7 +16,7 @@ const Slider = ({ id, label, value, min, max, unit, onChange }: SliderProps) => 
   <div style={{ marginBottom: 16 }}>
     <label htmlFor={id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
       <span>{label}</span>
-      <span style={{ fontWeight: 'bold', color: '#38bdf8' }}>
+      <span style={{ fontWeight: 'bold', color: '#38bdf8', fontFamily: 'monospace', fontVariantNumeric: 'tabular-nums' }}>
         {value}
         {unit}
       </span>
@@ -50,20 +51,20 @@ export const ControlPanel = ({
       padding: 24,
       borderRadius: 8,
       color: '#f8fafc',
-      fontFamily: 'sans-serif',
+      fontFamily: CJK_FONT,
       backdropFilter: 'blur(4px)',
     }}
   >
     <h2 style={{ margin: '0 0 20px 0', fontSize: 18, borderBottom: '1px solid #334155', paddingBottom: 10 }}>
-      Controls
+      操控面板
     </h2>
-    <Slider id="twd" label="True Wind Dir (TWD)" value={controls.twd} min={0} max={359} unit="°" onChange={(twd) => onChange({ twd })} />
-    <Slider id="tws" label="Wind Speed (TWS)" value={controls.tws} min={0} max={40} unit=" kt" onChange={(tws) => onChange({ tws })} />
-    <Slider id="hdg" label="Heading (HDG)" value={controls.hdg} min={0} max={359} unit="°" onChange={(hdg) => onChange({ hdg })} />
-    <Slider id="sail" label="Main Sail Angle" value={controls.mainSailAngle} min={-90} max={90} unit="°" onChange={(mainSailAngle) => onChange({ mainSailAngle })} />
-    <div style={{ marginTop: 20, fontSize: 12, color: '#94a3b8' }}>
-      * Drag scene to rotate camera
-      <br />* Scroll to zoom
+    <Slider id="twd" label="真風來向 TWD" value={controls.twd} min={0} max={359} unit="°" onChange={(twd) => onChange({ twd })} />
+    <Slider id="tws" label="真風速 TWS" value={controls.tws} min={0} max={40} unit=" kt" onChange={(tws) => onChange({ tws })} />
+    <Slider id="hdg" label="航向 HDG" value={controls.hdg} min={0} max={359} unit="°" onChange={(hdg) => onChange({ hdg })} />
+    <Slider id="sail" label="主帆角度" value={controls.mainSailAngle} min={-90} max={90} unit="°" onChange={(mainSailAngle) => onChange({ mainSailAngle })} />
+    <div style={{ marginTop: 20, fontSize: 12, color: '#94a3b8', lineHeight: 1.6 }}>
+      ・拖曳場景可旋轉視角
+      <br />・滾動滑鼠滾輪可縮放
     </div>
   </div>
 );
